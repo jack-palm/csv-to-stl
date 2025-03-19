@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CSV to STL Converter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>CSV to STL Converter</h1>
+    <p class="subtitle">Convert microscope height data to 3D models</p>
+    
+    <div class="form-section">
+      <h2>Input & Output</h2>
+      <div class="form-group">
+        <label for="input-file-path">Input CSV File:</label>
+        <div class="file-select-group">
+          <input type="text" id="input-file-path" placeholder="Select a CSV file" readonly>
+          <button id="select-input">Browse</button>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="output-file-path">Output STL File:</label>
+        <div class="file-select-group">
+          <input type="text" id="output-file-path" placeholder="Select save location" readonly>
+          <button id="select-output">Browse</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-section">
+      <h2>Settings</h2>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="microscope">Microscope Model:</label>
+          <select id="microscope">
+            <option value="VHX-7100">VHX-7100</option>
+            <option value="VHX-7020">VHX-7020</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="magnification">Magnification:</label>
+          <select id="magnification">
+            <option value="20x">20x</option>
+            <option value="30x">30x</option>
+            <option value="40x">40x</option>
+            <option value="50x">50x</option>
+            <option value="80x">80x</option>
+            <option value="100x">100x</option>
+            <option value="150x">150x</option>
+            <option value="200x">200x</option>
+            <option value="300x">300x</option>
+            <option value="400x">400x</option>
+            <option value="500x" selected>500x</option>
+            <option value="700x">700x</option>
+            <option value="1000x">1000x</option>
+            <option value="1500x">1500x</option>
+            <option value="2000x">2000x</option>
+            <option value="2500x">2500x</option>
+            <option value="4000x">4000x</option>
+            <option value="5000x">5000x</option>
+            <option value="6000x">6000x</option>
+            <option value="custom">Custom Scale</option>
+          </select>
+        </div>
+      </div>
+      
+      <div id="custom-scale-div" class="form-group" style="display: none;">
+        <label for="custom-scale">Custom X Scale (mm/pixel):</label>
+        <input type="number" id="custom-scale" step="0.0001" value="0.001" min="0.0001">
+      </div>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="y-scale">Y Scale (leave empty to match X):</label>
+          <input type="number" id="y-scale" step="0.0001" min="0.0001" placeholder="Same as X">
+        </div>
+        
+        <div class="form-group">
+          <label for="z-scale">Z Scale (height multiplier):</label>
+          <input type="number" id="z-scale" step="0.1" value="1" min="0.1">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="downsample">Downsample Factor:</label>
+        <div class="range-with-value">
+          <input type="range" id="downsample" min="1" max="100" value="4">
+          <span id="downsample-value">4</span>
+        </div>
+        <p class="help-text">Higher values create smaller files but less detail.</p>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <button id="convert-btn" class="primary">Convert to STL</button>
+    </div>
+    
+    <div id="status-container">
+      <p id="status"></p>
+    </div>
+  </div>
+  
+  <script src="renderer.js"></script>
+  <script>
+    // Update downsample value display
+    const downsampleInput = document.getElementById('downsample');
+    const downsampleValue = document.getElementById('downsample-value');
+    
+    downsampleInput.addEventListener('input', () => {
+      downsampleValue.textContent = downsampleInput.value;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "csv-to-stl",
+  "version": "1.0.0",
+  "description": "Convert CSV height data to STL files for 3D printing",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "author": "Jack R. Palmer",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "papaparse": "^5.4.1"
+  },
+  "build": {
+    "appId": "com.yourdomain.csvtostl",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "win": {
+      "target": ["nsis"],
+      "icon": "build/icon.ico"
+    }
+  }
+}
