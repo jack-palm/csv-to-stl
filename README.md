@@ -2,7 +2,8 @@
 
 A desktop application that converts CSV height data from microscope scans into 3D STL models for visualization and 3D printing.
 
-![Application Screenshot](https://via.placeholder.com/800x500?text=CSV+to+STL+Converter)
+![Application Screenshot]<img width="755" alt="image" src="https://github.com/user-attachments/assets/01863757-1401-4e0c-979f-74f3b8fca545" />
+
 
 ## Features
 
